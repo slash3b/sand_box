@@ -5,7 +5,7 @@ import(
     "flag"
     "io/ioutil"
     "os"
-    // "os/exec"
+    "os/exec"
     "strings"
 )
 
@@ -22,13 +22,9 @@ func main() {
         os.Exit(2)
     }
     for _, item := range items {
-        // fmt.Printf("%T", item)
-        // fmt.Println()
-        // name := item.Name()
         if item.Mode().IsDir() && !isHidden(item.Name()) {
             path := strings.Join([]string{*dir, item.Name()}, "")
-            fmt.Println(path)
-            // cmd := exec.Command()
+            go update(path, *branch)
             // go update(item, branch)
             // launch process that will
             // go into this folder
@@ -36,7 +32,15 @@ func main() {
             // that will update repo
         }
     }
-    fmt.Println(*branch)
+}
+
+func update(path, branch string) {
+    os.Chdir(path)
+    cmd := exec.Command("git", "pull", "origin", branch)
+    err := cmd.Run()
+    if err != nil {
+        fmt.Println(err)
+    }
 }
 
 /*
