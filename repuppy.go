@@ -34,7 +34,9 @@ func update(path, branch string) {
     if err != nil {
         fmt.Println(err)
     }
-    os.Chdir(realPath)
+    fmt.Println(realPath)
+    var input string
+    fmt.Scanln(&input)
 }
 
 /*
