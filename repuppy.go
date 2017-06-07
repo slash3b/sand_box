@@ -5,7 +5,7 @@ import(
     "flag"
     "io/ioutil"
     "os"
-//    "os/exec"
+    "os/exec"
     "strings"
     "path/filepath"
 )
@@ -38,6 +38,10 @@ func update(path, branch string) {
     // this is just checking that we `cd` to proper directory
     pwd, _ := os.Getwd()
     fmt.Println(pwd)
+    err := exec.Command("git", "pull", "origin")
+    if err == nil {
+        fmt.Println("Ooooops")
+    }
 }
 
 /*
