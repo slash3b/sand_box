@@ -30,13 +30,8 @@ func main() {
 
 func update(path, branch string) {
     fmt.Println("Updating ...", path)
-    realPath, err := filepath.Abs(strings.Join([]string{"./", path},""))
-    if err != nil {
-        fmt.Println(err)
-    }
+    realPath, _ := filepath.Abs(strings.Join([]string{"./", path},""))
     fmt.Println(realPath)
-    var input string
-    fmt.Scanln(&input)
 }
 
 /*
