@@ -21,17 +21,23 @@ func main() {
         fmt.Println(err)
         os.Exit(2)
     }
+    base, _ := filepath.Abs(".")
+    fmt.Println(base)
+    fmt.Println("----------------------")
     for _, item := range items {
         if item.Mode().IsDir() && !isHidden(item.Name()) {
-            update(item.Name(), *branch)
+            repoPath := strings.Join([]string{base, item.Name()}, "/")
+            update(repoPath, *branch)
         }
     }
 }
 
 func update(path, branch string) {
     fmt.Println("Updating ...", path)
-    realPath, _ := filepath.Abs(strings.Join([]string{"./", path},""))
-    fmt.Println(realPath)
+    os.Chdir(path)
+    // this is just checking that we `cd` to proper directory
+    pwd, _ := os.Getwd()
+    fmt.Println(pwd)
 }
 
 /*
