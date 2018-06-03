@@ -31,9 +31,7 @@ def check_keydown_events(event, settings, screen, ship, bullets):
     if event.key == pygame.K_DOWN:
         ship.moving_down = True
     if event.key == pygame.K_SPACE:
-        if len(bullets) < settings.bullet_amount:
-            bullet = Bullet(settings, screen, ship)
-            bullets.add(bullet)
+        fire_bullet(settings, screen, ship, bullets)
 
 def update_screen(settings, screen, ship, bullets):
     screen.fill(settings.bg_color)
@@ -48,3 +46,8 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+def fire_bullet(settings, screen, ship, bullets):
+    if len(bullets) < settings.bullet_amount:
+        bullet = Bullet(settings, screen, ship)
+        bullets.add(bullet)
