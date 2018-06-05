@@ -32,6 +32,8 @@ def check_keydown_events(event, settings, screen, ship, bullets):
         ship.moving_down = True
     if event.key == pygame.K_SPACE:
         fire_bullet(settings, screen, ship, bullets)
+    if event.key == pygame.K_q:
+        sys.exit()
 
 def update_screen(settings, screen, ship, bullets):
     screen.fill(settings.bg_color)
