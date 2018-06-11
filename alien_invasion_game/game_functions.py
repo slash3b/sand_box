@@ -35,12 +35,13 @@ def check_keydown_events(event, settings, screen, ship, bullets):
     if event.key == pygame.K_q:
         sys.exit()
 
-def update_screen(settings, screen, ship, bullets):
+def update_screen(settings, screen, ship, alien, bullets):
     screen.fill(settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
 
     ship.blitme()
+    alien.blitme()
     pygame.display.flip()
 
 def update_bullets(bullets):

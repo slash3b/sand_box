@@ -5,6 +5,7 @@ import game_functions as gf
 
 from settings import Settings
 from ship import Ship
+from alien import Alien
 from pygame.sprite import Group
 
 def run_game():
@@ -16,6 +17,7 @@ def run_game():
 
     resolution = (settings.screen_height, settings.screen_width)
     screen = pygame.display.set_mode(resolution)
+    alien = Alien(settings, screen)
     ship = Ship(screen, settings)
     bullets = Group()
 
@@ -25,6 +27,6 @@ def run_game():
         gf.check_events(settings, screen, ship, bullets)
         gf.update_bullets(bullets)
         ship.update()
-        gf.update_screen(settings, screen, ship, bullets)
+        gf.update_screen(settings, screen, ship, alien, bullets)
 
 run_game()
