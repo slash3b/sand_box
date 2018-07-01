@@ -9,24 +9,21 @@ from pygame.sprite import Group
 
 def run_game():
     pygame.init()
-    # pygame.mixer.music.load('music/space_police.mp3')
-    # pygame.mixer.music.play(0)
-
     settings = Settings()
-
-    resolution = (settings.screen_height, settings.screen_width)
+    pygame.display.set_caption(settings.caption)
+    resolution = (settings.screen_width, settings.screen_height)
     screen = pygame.display.set_mode(resolution)
+
     ship = Ship(screen, settings)
     aliens = Group()
     bullets = Group()
-    gf.create_fleet(settings, screen, aliens)
-
-    pygame.display.set_caption(settings.caption)
+    gf.create_fleet(settings, screen, ship, aliens)
 
     while True:
         gf.check_events(settings, screen, ship, bullets)
-        gf.update_bullets(bullets)
         ship.update()
+        gf.update_bullets(aliens, bullets)
+        gf.update_aliens(settings, aliens)
         gf.update_screen(settings, screen, ship, aliens, bullets)
 
 run_game()
