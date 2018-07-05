@@ -3,6 +3,8 @@ import pygame
 from bullet import Bullet
 from alien import Alien
 
+from time import sleep
+
 def check_events(settings, screen, ship, bullets):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -45,12 +47,18 @@ def update_screen(settings, screen, ship, aliens, bullets):
     aliens.draw(screen)
     pygame.display.flip()
 
-def update_bullets(aliens, bullets):
+def update_bullets(settings, screen, ship, aliens, bullets):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    check_bullet_alien_condition(settings, screen, ship, aliens, bullets)
+
+def check_bullet_alien_condition(settings, screen, ship, aliens, bullets):
+    pygame.sprite.groupcollide(bullets, aliens, True, True)
+    if len(aliens) == 0:
+        bullets.empty()
+        create_fleet(settings, screen, ship, aliens)
 
 def fire_bullet(settings, screen, ship, bullets):
     if len(bullets) < settings.bullet_amount:
@@ -83,9 +91,11 @@ def create_alien(settings, screen, aliens, alien_number, row_number):
     alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
 
-def update_aliens(settings, aliens):
+def update_aliens(settings,stats, screen, ship, aliens, bullets):
     check_fleet_edges(settings, aliens)
     aliens.update()
+    if pygame.sprite.spritecollideany(ship, aliens):
+        ship_hit(settings, stats, screen, ship, aliens, bullets)
 
 def check_fleet_edges(settings, aliens):
     for alien in aliens.sprites():
@@ -97,3 +107,12 @@ def change_fleet_direction(settings, aliens):
     for alien in aliens.sprites():
         alien.rect.y += settings.fleet_drop_speed
     settings.fleet_direction *= -1
+
+def ship_hit(settings, stats, screen, ship, aliens, bullets):
+    stats.ships_left -= 1
+    aliens.empty()
+    bullets.empty()
+    create_fleet(settings, screen, ship, aliens)
+    ship.center_ship()
+
+    sleep(0.5)
