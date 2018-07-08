@@ -29,6 +29,7 @@ def check_play_button(settings, screen, stats, sb, play_button, ship, aliens, bu
         sb.prep_score()
         sb.prep_high_score()
         sb.prep_level()
+        sb.prep_ships()
 
         aliens.empty()
         bullets.empty()
@@ -126,12 +127,12 @@ def create_alien(settings, screen, aliens, alien_number, row_number):
     alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
 
-def update_aliens(settings, stats, screen, ship, aliens, bullets):
+def update_aliens(settings, stats, sb, screen, ship, aliens, bullets):
     check_fleet_edges(settings, aliens)
     aliens.update()
     if pygame.sprite.spritecollideany(ship, aliens):
-        ship_hit(settings, stats, screen, ship, aliens, bullets)
-    check_aliens_bottom(settings, stats, screen, ship, aliens, bullets)
+        ship_hit(settings, stats, sb, screen, ship, aliens, bullets)
+    check_aliens_bottom(settings, stats, sb, screen, ship, aliens, bullets)
 
 def check_fleet_edges(settings, aliens):
     for alien in aliens.sprites():
@@ -144,9 +145,12 @@ def change_fleet_direction(settings, aliens):
         alien.rect.y += settings.fleet_drop_speed
     settings.fleet_direction *= -1
 
-def ship_hit(settings, stats, screen, ship, aliens, bullets):
+def ship_hit(settings, stats, sb, screen, ship, aliens, bullets):
     if (stats.ships_left > 0):
         stats.ships_left -= 1
+
+        sb.prep_ships()
+
         aliens.empty()
         bullets.empty()
         create_fleet(settings, screen, ship, aliens)
@@ -157,11 +161,11 @@ def ship_hit(settings, stats, screen, ship, aliens, bullets):
         stats.game_active = False
         pygame.mouse.set_visible(True)
 
-def check_aliens_bottom(settings, stats, screen, ship, aliens, bullets):
+def check_aliens_bottom(settings, stats, sb, screen, ship, aliens, bullets):
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
-            ship_hit(settings, stats, screen, ship, aliens, bullets)
+            ship_hit(settings, stats, sb, screen, ship, aliens, bullets)
             break
 
 def check_high_score(stats, sb):
