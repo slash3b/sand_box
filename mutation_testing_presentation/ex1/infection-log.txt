@@ -1,0 +1,394 @@
+Escaped mutants:
+================
+
+
+1) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:10    [M] Plus
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.1b84e0cf6eba87b87645084234fefc8c.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+ {
+     public function adds(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+....                                                                4 / 4 (100%)
+
+Time: 21 ms, Memory: 4.00MB
+
+OK (4 tests, 4 assertions)
+
+
+2) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:15    [M] Plus
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.510ea52bb271bcdf1c7544db4b23c8d7.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+....                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+OK (4 tests, 4 assertions)
+
+
+3) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:21    [M] Equal
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.c9b13835852014968996fa455813d962.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+         foreach ($arr as $elem) {
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+....                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+OK (4 tests, 4 assertions)
+
+
+4) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:23    [M] Break_
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.7acaa794986567479e17b88d0fc9fe30.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+@@ @@
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+....                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+OK (4 tests, 4 assertions)
+
+
+5) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:32    [M] IncrementInteger
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.fc315d789147603895e82bac7ae03de5.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+@@ @@
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+....                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+OK (4 tests, 4 assertions)
+
+Timeout mutants:
+================
+
+Killed mutants:
+===============
+
+
+1) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:8    [M] PublicVisibility
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.4203ad0241d3b4270b0bf35466dbe1e6.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+ 
+ final class Calculator
+ {
+-    public function adds(int $x, int $y)
++    protected function adds(int $x, int $y)
+     {
+         return $x + $y;
+     }
+     public function subtracts(int $x, int $y)
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+E
+
+Time: 17 ms, Memory: 4.00MB
+
+There was 1 error:
+
+1) CalculatorTest::test_adds
+Error: Call to protected method Ex1\Calculator::adds() from context 'CalculatorTest'
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:13
+
+ERRORS!
+Tests: 1, Assertions: 0, Errors: 1.
+
+
+2) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:13    [M] PublicVisibility
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.7c630716dea024dd003003cfe142a2a9.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     {
+         return $x + $y;
+     }
+-    public function subtracts(int $x, int $y)
++    protected function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+.E
+
+Time: 17 ms, Memory: 4.00MB
+
+There was 1 error:
+
+1) CalculatorTest::test_subtracts
+Error: Call to protected method Ex1\Calculator::subtracts() from context 'CalculatorTest'
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:20
+
+ERRORS!
+Tests: 2, Assertions: 1, Errors: 1.
+
+
+3) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:20    [M] Foreach_
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.df863767a14f56ea541290fa872a89c6.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+-        foreach ($arr as $elem) {
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+..E
+
+Time: 18 ms, Memory: 4.00MB
+
+There was 1 error:
+
+1) CalculatorTest::test_in_array
+Undefined variable: result
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:24
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:27
+
+ERRORS!
+Tests: 3, Assertions: 2, Errors: 1.
+
+
+4) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:18    [M] PublicVisibility
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.0c1b6b6d241fb5f98cc8771b4fcdcf12.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+-    public function inArray($arr, $needle)
++    protected function inArray($arr, $needle)
+     {
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+..E
+
+Time: 18 ms, Memory: 4.00MB
+
+There was 1 error:
+
+1) CalculatorTest::test_in_array
+Error: Call to protected method Ex1\Calculator::inArray() from context 'CalculatorTest'
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:27
+
+ERRORS!
+Tests: 3, Assertions: 2, Errors: 1.
+
+
+5) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:32    [M] DecrementInteger
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.6202acd04098cd9d2b64e3a6c7f7ff5b.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+@@ @@
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+...F                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+There was 1 failure:
+
+1) CalculatorTest::test_filter_array
+Failed asserting that actual size 3 matches expected size 2.
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:35
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.
+
+
+6) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:32    [M] GreaterThan
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.4a3664c6eabc2a6bfd9cca6829dbbd7a.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+@@ @@
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+...F                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+There was 1 failure:
+
+1) CalculatorTest::test_filter_array
+Failed asserting that actual size 3 matches expected size 2.
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:35
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.
+
+
+7) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:32    [M] GreaterThanNegotiation
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.97bc66dd3e811fe5a1f136d5d3ddc017.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+@@ @@
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+...F                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+There was 1 failure:
+
+1) CalculatorTest::test_filter_array
+Failed asserting that actual size 4 matches expected size 2.
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:35
+
+FAILURES!
+Tests: 4, Assertions: 4, Failures: 1.
+
+
+8) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:29    [M] PublicVisibility
+exec /usr/bin/php -c /tmp/infectionf2h6Lm  /home/slash3b/Projects/mutation_testing_presentation/ex1/vendor/phpunit/phpunit/phpunit --configuration /tmp/infection/phpunitConfiguration.7c82fba01a2538379f67485550f7363c.infection.xml --stop-on-failure 
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+@@ @@
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+...E                                                                4 / 4 (100%)
+
+Time: 18 ms, Memory: 4.00MB
+
+There was 1 error:
+
+1) CalculatorTest::test_filter_array
+Error: Call to protected method Ex1\Calculator::filterArray() from context 'CalculatorTest'
+
+/home/slash3b/Projects/mutation_testing_presentation/ex1/tests/CalculatorTest.php:34
+
+ERRORS!
+Tests: 4, Assertions: 3, Errors: 1.
+
+Errors mutants:
+===============
+
+Not covered mutants:
+====================
+
+
+1) /home/slash3b/Projects/mutation_testing_presentation/ex1/src/Calculator.php:31    [M] FunctionCall
+
+--- Original
++++ New
+@@ @@
+     }
+     public function subtracts(int $x, int $y)
+     {
+-        return $x + $y;
++        return $x - $y;
+     }
+     public function inArray($arr, $needle)
+     {
+@@ @@
