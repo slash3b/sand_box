@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Ex1;
 
-final class Calculator
+class WeirdCalculator
 {
     public function adds(int $x, int $y)
     {
