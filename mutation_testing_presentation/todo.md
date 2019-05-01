@@ -1,3 +1,0 @@
-EightPointsGuzzleBundle
-FOSUserBundle
-jwt

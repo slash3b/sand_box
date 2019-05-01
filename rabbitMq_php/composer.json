@@ -1,6 +1,0 @@
-{
-    "require": {
-        "enqueue/amqp-ext": "^0.3.6",
-        "symfony/console": "^3.2"
-    }
-}
